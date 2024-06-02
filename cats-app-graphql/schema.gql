@@ -1,0 +1,80 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type BreedEntity {
+  id: Int!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type TrainerEntity {
+  id: Int!
+  name: String!
+  nickname: String
+  cats: [CatEntity!]
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type CatEntity {
+  id: Int!
+  name: String!
+  age: Float!
+  breedId: Float!
+  breed: BreedEntity!
+  trainers: [TrainerEntity!]!
+  imageLink: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Query {
+  cats: [CatEntity!]!
+  readCat(id: Int!): CatEntity!
+  listTrainers: [TrainerEntity!]!
+  trainer(id: Int!): TrainerEntity!
+}
+
+type Mutation {
+  cat(createCatInput: CreateCatInput!): CatEntity!
+  updateCat(updateCatInput: UpdateCatInput!): CatEntity!
+  deleteCat(id: Int!): CatEntity!
+  createTrainer(createTrainerInput: CreateTrainerInput!): TrainerEntity!
+  updateTrainer(updateTrainerInput: UpdateTrainerInput!): TrainerEntity!
+  removeTrainer(id: Int!): TrainerEntity!
+}
+
+input CreateCatInput {
+  age: Int!
+  breedId: Int!
+  name: String!
+  imageLink: String
+  trainers: [Float!]!
+}
+
+input UpdateCatInput {
+  age: Int
+  breedId: Int
+  name: String
+  imageLink: String
+  trainers: [Float!]
+  id: Int!
+}
+
+input CreateTrainerInput {
+  name: String!
+  nickname: String
+}
+
+input UpdateTrainerInput {
+  name: String
+  nickname: String
+  id: Int!
+}

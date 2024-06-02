@@ -1,0 +1,9 @@
+services:
+  db:
+    image: postgres:latest
+    ports:
+      - '5431:5432'
+    environment:
+      - POSTGRES_USER=joeng03
+      - POSTGRES_PASSWORD=joeng03
+      - POSTGRES_DB=cats-db-docker

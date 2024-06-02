@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Currency {
+  SGD
+  USD
+  EUR
+  JPY
+  GBP
+  CNY
+  MYR
+}
+
+model Cat {
+  id        Int     @id @default(autoincrement())
+  name      String
+  age       Int
+  breed     Breed   @relation(fields: [breedId], references: [id])
+  imageLink String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  breedId   Int
+  Payment   Payment?
+}
+
+model Breed {
+  id   Int    @id @default(autoincrement())
+  name String
+  cats Cat[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Customer {
+  id      Int       @id @default(autoincrement())
+  name    String
+  Payment Payment[]
+}
+
+model Payment {
+  id         Int       @id @default(autoincrement())
+  customerId Int
+  customer   Customer? @relation(fields: [customerId], references: [id])
+  catId      Int       @unique
+  cat        Cat?      @relation(fields: [catId], references: [id])
+  amount     Float
+  currency   Currency
+}
