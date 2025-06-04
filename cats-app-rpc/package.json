@@ -3,6 +3,8 @@
     "ts-proto": "^1.174.0"
   },
   "dependencies": {
+    "@prisma/client": "6.8.2",
+    "prisma": "^6.8.2",
     "protobufjs": "^7.3.0"
   }
 }

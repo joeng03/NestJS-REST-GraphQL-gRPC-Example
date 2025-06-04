@@ -1,7 +1,7 @@
 import { Cat } from '@prisma/client';
 import { BreedEntity } from './breed.entity';
 
-export class CatEntity implements Cat {
+export class CatEntity implements Omit<Cat, 'nickName'> {
   id: number;
   name: string;
   age: number;

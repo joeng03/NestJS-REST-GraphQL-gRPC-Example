@@ -16,6 +16,7 @@ datasource db {
 model Cat {
   id        Int     @id @default(autoincrement())
   name      String
+  nickName String?
   age       Int
   breed     Breed   @relation(fields: [breedId], references: [id])
   imageLink String?

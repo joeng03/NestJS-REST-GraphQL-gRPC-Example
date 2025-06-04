@@ -1,11 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsInt, IsString } from 'class-validator';
+import { IsInt, IsString, IsOptional } from 'class-validator';
 
 export class CreateCatDto {
   @ApiProperty({
     description: 'The name of the cat',
     example: 'Fluffy',
   })
+  @IsString()
   name: string;
 
   @ApiProperty({
@@ -27,6 +28,7 @@ export class CreateCatDto {
     example:
       'https://s.yimg.com/ny/api/res/1.2/ujhbKBvPoRp72zKNdLrREg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTQ4MA--/https://media.zenfs.com/en/insider_articles_922/c6ce8d0b9a7b28f9c2dee8171da98b8f',
   })
+  @IsOptional()
   @IsString()
   imageLink: string;
 }
